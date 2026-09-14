@@ -1,0 +1,24 @@
+# .github/workflows/python-tests.yml
+name: Python Test Suite
+
+# Trigger this workflow on every push and pull request
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pytest
+
+      - name: Run Pytest test suite
+        run: pytest -v
