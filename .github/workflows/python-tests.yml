@@ -1,8 +1,10 @@
 # .github/workflows/python-tests.yml
 name: Python Test Suite
 
-# Trigger this workflow on every push and pull request
-on: [push, pull_request]
+# Run the workflow only when code is pushed.
+# Pull requests will not automatically trigger this workflow.
+on:
+  push:
 
 jobs:
   test:
