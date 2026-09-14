@@ -21,6 +21,28 @@ class Contact:
         """
         return f"{self.name} | {self.email} | {self.phone}"
 
+    def masked_view(self):
+        """Return contact details with the email address partially masked.
+
+        Returns:
+            str: The contact's name, masked email, and phone number.
+        """
+        local_part, domain = self.email.split("@")
+
+        if len(local_part) <= 2:
+            masked_email = self.email
+        else:
+            masked_middle = "*" * (len(local_part) - 2)
+            masked_email = (
+                local_part[0]
+                + masked_middle
+                + local_part[-1]
+                + "@"
+                + domain
+            )
+
+        return f"{self.name} | {masked_email} | {self.phone}"
+
 
 class ContactBook:
     """Manage a collection of Contact objects."""
@@ -93,7 +115,4 @@ contact_book.add_contact(kofi)
 result = contact_book.find_contact("Kofi")
 
 if result:
-    print(
-        f"Search result for 'Kofi': "
-        f"{result.name} | {result.email} | {result.phone}"
-    )
+    print(f"Search result for 'Kofi': {result.masked_view()}")
