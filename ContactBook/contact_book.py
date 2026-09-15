@@ -111,6 +111,7 @@ kofi = Contact(
 
 contact_book.add_contact(amelia)
 contact_book.add_contact(kofi)
+print(f"Masked view: {amelia.masked_view()}")
 
 result = contact_book.find_contact("Kofi")
 
